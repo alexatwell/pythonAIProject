@@ -33,11 +33,12 @@ def check_all_messages(message):
     response('Hello!', ['hello', 'hi', 'sup', 'hey', 'hiya'], single_response=True)
     response('I\'m well thanks, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
     response('I love coding too!', ['i', 'love', 'coding'], required_words=['i', 'love', 'coding'])
+    response(long.R_FAT, ['weight', 'fat', 'too much', 'eat', 'food'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
     print(highest_prob_list)
 
-    return best_match
+    return long.unknown () if highest_prob_list[best_match] < 1 else best_match
 
 def get_response(user_input):
     split_message = re.split(r'\s+|[,;?!.-]\s*', user_input.lower())
